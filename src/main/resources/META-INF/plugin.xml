@@ -1,0 +1,90 @@
+<idea-plugin>
+    <id>com.mert.salik.androidstudio.cleaner</id>
+    <name>Android Studio Cleaner</name>
+    <version>1.0.0</version>
+    <idea-version since-build="243" until-build="243.*"/>
+    <vendor email="codermert@bk.ru" url="https://github.com/codermert">Mert SALIK</vendor>
+
+    <description>
+        <![CDATA[
+        <h2>Android Studio Cleaner</h2>
+        <p>
+            Android Studio Cleaner is a professional plugin designed to keep your IDE fast, clean, and organized. Scan and remove unnecessary files with a single click to boost your performance!
+        </p>
+        <hr/>
+        <h3>Developer</h3>
+        <p>Mert | <a href="mailto:codermert@bk.ru">codermert@bk.ru</a></p>
+        <hr/>
+        <h3>Features</h3>
+        <ul>
+            <li>Multi-language support (Turkish & English)</li>
+            <li>One-click cleaning for Android Studio, Emulator, Dart, Kotlin, and Java caches and logs</li>
+            <li>Modern and user-friendly interface (light & dark theme)</li>
+            <li>Detailed cleaning reports</li>
+            <li>Safe cleaning: important files are protected</li>
+        </ul>
+        <hr/>
+        <h3>Purpose</h3>
+        <blockquote>
+            <b>Android Studio Cleaner</b> helps you maintain a faster and more efficient development environment by removing unnecessary files and caches from your IDE. Its user-friendly interface makes cleaning easy and optimizes your system resources.
+        </blockquote>
+        <hr/>
+        <h3>How to Use</h3>
+        <ol>
+            <li>Open <b>Android Studio Cleaner</b> from the Tools menu</li>
+            <li>Select the categories you want to clean</li>
+            <li>Click the <b>Scan</b> button and review the results</li>
+            <li>Click the <b>Clean</b> button to complete the process</li>
+        </ol>
+        ]]>
+    </description>
+
+    <change-notes>
+        <![CDATA[
+        <h3>v1.0.0 - İlk Sürüm</h3>
+        <ul>
+            <li>Çoklu dil desteği (Türkçe/İngilizce)</li>
+            <li>Android Studio cache temizleme</li>
+            <li>Emulator temizleme</li>
+            <li>Dart/Kotlin/Java cache temizleme</li>
+            <li>Modern ve güzel UI</li>
+            <li>Tema desteği (Açık/Koyu)</li>
+            <li>Detaylı raporlama</li>
+        </ul>
+        ]]>
+    </change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.mert.salik.cleaner.services.SettingsService"/>
+        <applicationService serviceImplementation="com.mert.salik.cleaner.services.LanguageService"/>
+        <applicationService serviceImplementation="com.mert.salik.cleaner.services.ThemeService"/>
+        <applicationService serviceImplementation="com.mert.salik.cleaner.services.LogService"/>
+        <startupActivity implementation="com.mert.salik.cleaner.startup.CleanerStartupActivity"/>
+        <notificationGroup id="Android Studio Cleaner Notifications" displayType="BALLOON" isLogByDefault="true"/>
+        <toolWindow id="Android Studio Cleaner"
+                    anchor="right"
+                    factoryClass="com.mert.salik.cleaner.ui.AndroidStudioCleanerToolWindowFactory"
+                    icon="/icons/toolWindowIcon.svg"
+                    secondary="false"/>
+    </extensions>
+
+    <actions>
+        <group id="AndroidStudioCleaner.TopMenu"
+               text="_Android Studio Cleaner"
+               description="Android Studio Cleaner Toolbar Menu">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="AndroidStudioCleanerAction"
+                    class="com.mert.salik.cleaner.actions.AndroidStudioCleanerAction"
+                    text="_Android Studio Cleaner"
+                    description="Opens Android Studio Cleaner plugin"
+                    icon="/icons/toolWindowIcon.svg">
+                <keyboard-shortcut first-keystroke="control alt c" keymap="$default"/>
+            </action>
+        </group>
+    </actions>
+
+</idea-plugin>

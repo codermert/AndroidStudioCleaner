@@ -1,0 +1,41 @@
+plugins {
+    id 'org.jetbrains.intellij' version '1.17.3'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+}
+
+group = 'com.mert.salik'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.9.23"
+    implementation "com.google.code.gson:gson:2.10.1"
+    implementation "commons-io:commons-io:2.11.0"
+}
+
+intellij {
+    type = 'IC'
+    version = '2023.3.2'
+    plugins = []
+    downloadSources = false
+}
+
+patchPluginXml {
+    sinceBuild = '233'
+    untilBuild = '243.*' // AI-243 versiyonunu da destekle
+    changeNotes = """
+      <h3>Android Studio Cleaner Plugin v1.0.0</h3>
+      <ul>
+        <li>Çoklu dil desteği (Türkçe/İngilizce)</li>
+        <li>Android Studio cache temizleme</li>
+        <li>Emulator temizleme</li>
+        <li>Dart/Kotlin/Java cache temizleme</li>
+        <li>Güzel ve modern UI</li>
+        <li>Tema desteği (Açık/Koyu)</li>
+        <li>Detaylı raporlama</li>
+      </ul>
+      """
+}
